@@ -57,7 +57,6 @@ fn test_body(body: mir::Body) {
     for term in body.blocks.iter().map(|bb| &bb.terminator) {
         match &term.kind {
             Call { func, .. } => {
-                eprintln!("{:?}", term.span.get_lines());
                 let name = func.ty(&body.locals()).unwrap().kind();
                 let name = name.rigid().unwrap();
                 let stable_mir::ty::RigidTy::FnDef(def, _) = name else {
